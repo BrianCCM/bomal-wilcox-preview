@@ -955,10 +955,12 @@ HTML to convert:
         sends nothing, so these registrations stay countable.</p>
         <p><b>These pages should be indexable</b> once live. The preview they came from is blocked
         by a robots.txt that is not part of the handoff, so there is nothing to undo.</p>
-        <p><b>A correction worth carrying across.</b> register.bomal.org currently shows the Friday
-        banquet and the Saturday box lunch as sold out. They are not. These pages say they are
-        available while tickets last, which means the two sites disagree until the registration
-        page is updated.</p>
+        <p><b>Both meal add-ons are available.</b> The Friday honoree banquet and the Saturday
+        box lunch are $25 each and still selling, and register.bomal.org offers both as
+        checkboxes. These pages say "available while they last", which matches. Note that
+        register.bomal.org's server-rendered HTML contains placeholder text marking both add-ons
+        "sold out" before its JavaScript loads real availability. Nobody browsing
+        normally sees it, but anything reading the page without JavaScript will.</p>
       </div>
     </div>
   </section>
