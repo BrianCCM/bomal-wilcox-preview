@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-asset-base="brand_assets/" data-default-speaker="wilcox" data-speaker-dedicated>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bradley R. Wilcox and the room he is speaking in | November 6 and 7</title>
+<meta name="description" content="Bradley R. Wilcox is one of six names on the program, alongside Terryl Givens, Rosalynde F. Welch, Walter Rane, Brad Pelo and Jane Clayson Johnson. Provo, November 6 and 7.">
+<link rel="icon" href="brand_assets/logo-icon.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  /* ---- Option B: authority first. The lineup IS the argument. ---- */
+  .topbar{ padding-block:var(--s4); }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); }
+  .topbar img{ height:68px; width:auto; display:block; }
+  .topbar .when{ font-size:.9375rem; font-weight:700; color:var(--ink-soft); text-align:right; line-height:1.4; }
+
+  /* Hero leads with the speaker whose ad brought them. The wall of everyone
+     else then does the credibility work. */
+  .hero{ padding-block:var(--s5) var(--s6); }
+  .hero-grid{ display:grid; gap:var(--s6); align-items:center; }
+  @media (min-width:900px){ .hero-grid{ grid-template-columns:1.05fr .95fr; gap:var(--s7); } }
+  .hero h1{ max-width:16ch; }
+  .hero .lede{ margin-top:var(--s4); max-width:52ch; }
+  .hero .from-speaker{ display:inline-block; margin-bottom:var(--s4);
+    font-size:.9375rem; font-weight:700; color:var(--green-deep);
+    background:rgba(125,151,94,.14); border-radius:999px; padding:.45rem 1rem; }
+
+  .hero-card{ border-radius:var(--rad-xl); overflow:hidden; box-shadow:var(--sh-3); background:var(--card); }
+  .hero-card .portrait{ aspect-ratio:1/1; }
+  .hero-card .portrait-cap h3{ color:#fff; font-size:1.45rem; }
+  .hero-card .portrait-cap p{ font-size:.9375rem; color:rgba(255,255,255,.85); margin-top:.15rem; line-height:1.45; }
+  .hero-card .speaking{ padding:var(--s3) var(--s4); font-size:.875rem; font-weight:700;
+    color:var(--green-deep); background:rgba(125,151,94,.14); border-top:1px solid var(--line); }
+
+  .wall-intro{ margin-bottom:var(--s5); }
+
+  /* The wall. Six faces, full bleed of the container, no ornament. */
+  .wall{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s4); }
+  @media (min-width:680px){ .wall{ grid-template-columns:repeat(3,1fr); } }
+  .wall figure{ margin:0; }
+  .wall .portrait{ aspect-ratio:4/5; border-radius:var(--rad-lg); box-shadow:var(--sh-2); }
+  .wall .portrait img{ object-position:center 18%; }
+  .wall .portrait-cap h3{ color:#fff; font-size:1.15rem; }
+  .wall .portrait-cap p{ font-size:.875rem; color:rgba(255,255,255,.85); margin-top:.2rem; line-height:1.45; }
+  .wall .tagline{ margin-top:var(--s2); font-size:.9375rem; color:var(--ink-soft); line-height:1.6; }
+
+  /* Institutions */
+  .insts{ display:grid; gap:var(--s4); }
+  @media (min-width:760px){ .insts{ grid-template-columns:repeat(4,1fr); } }
+  .inst{ padding:var(--s4); border-left:3px solid var(--olive); }
+  .inst b{ display:block; font-family:'Libre Baskerville',Georgia,serif; font-weight:700;
+    font-size:1.05rem; letter-spacing:-.015em; line-height:1.3; }
+  .inst span{ display:block; margin-top:.35rem; font-size:.9375rem; color:var(--ink-soft); line-height:1.55; }
+
+  /* Honoree spotlight */
+  .spot{ display:grid; gap:var(--s6); align-items:center; }
+  @media (min-width:900px){ .spot{ grid-template-columns:.85fr 1.15fr; gap:var(--s7); } }
+  .spot .portrait{ aspect-ratio:1/1; border-radius:var(--rad-xl); box-shadow:var(--sh-3); }
+  .spot .portrait::after{ background:linear-gradient(to top, rgba(29,23,16,.35), rgba(29,23,16,0) 55%); }
+  .spot h2{ margin-bottom:var(--s3); }
+  .spot p+p{ margin-top:var(--s3); }
+
+  /* Podcast */
+  .pod{ display:grid; gap:var(--s5); align-items:center; }
+  @media (min-width:860px){ .pod{ grid-template-columns:1fr 1.15fr; gap:var(--s6); } }
+  .pod-img{ border-radius:var(--rad-lg); overflow:hidden; box-shadow:var(--sh-2); background:var(--tan-light); }
+  .pod-img img{ display:block; width:100%; height:auto; }
+
+  .closer{ text-align:center; }
+  .closer h2{ margin-bottom:var(--s3); }
+  .closer .lede{ margin:0 auto var(--s5); max-width:50ch; }
+  .closer .cta-sub{ margin-top:var(--s4); font-size:.9375rem; color:rgba(250,248,243,.7); }
+</style>
+</head>
+<body>
+
+<div class="urgency" data-urgency>November 6 and 7 at the Provo Marriott.</div>
+
+<header class="topbar">
+  <div class="wrap">
+    <img src="brand_assets/logo-full.webp" alt="Book of Mormon Arts &amp; Letters Foundation">
+    <p class="when">November 6 and 7, 2026<br>Provo Marriott on Center</p>
+  </div>
+</header>
+
+<main>
+  <!-- HERO: deliberately short. The proof is the grid below it. -->
+  <section class="hero grain">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="from-speaker" data-sp-only hidden>
+          You came here for <span data-sp="name">Bradley R. Wilcox</span>.
+        </p>
+        <h1>He is one of six reasons to be in that room.</h1>
+        <p class="lede">
+          <span data-sp="name">Bradley R. Wilcox</span> speaks at the Book of Mormon Culture
+          Conference on November 6 and 7, alongside the scholars, painters and storytellers who
+          have given their careers to this book. Two days at the Provo Marriott.
+        </p>
+        <p style="margin-top:var(--s5)">
+          <a class="btn btn-primary btn-lg" href="https://register.bomal.org/" data-register>Register, <span data-price-now>$30</span> per person</a>
+        </p>
+      </div>
+
+      <div class="hero-card">
+        <div class="portrait">
+          <img data-sp="img" src="brand_assets/speakers/wilcox.webp" alt="Bradley R. Wilcox" width="400" height="400">
+          <div class="portrait-cap">
+            <h3 data-sp="name">Bradley R. Wilcox</h3>
+            <p data-sp="role">Professor of Ancient Scripture, BYU</p>
+          </div>
+        </div>
+        <p class="speaking">Speaking November 6 and 7 in Provo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE WALL -->
+  <section class="section">
+    <div class="wrap">
+      <div class="wall-intro measure">
+        <h2>The six names on the program</h2>
+      </div>
+      <div class="wall">
+        <figure>
+          <div class="portrait">
+            <img src="brand_assets/speakers/givens.webp" alt="Terryl Givens" width="400" height="400">
+            <div class="portrait-cap"><h3>Terryl Givens</h3><p>Senior Research Fellow, Neal A. Maxwell Institute</p></div>
+          </div>
+          <p class="tagline">Honored Friday evening for achievement in Book of Mormon letters.</p>
+        </figure>
+        <figure>
+          <div class="portrait">
+            <img src="brand_assets/speakers/welch.webp" alt="Rosalynde F. Welch" width="400" height="400">
+            <div class="portrait-cap"><h3>Rosalynde F. Welch</h3><p>Associate Director, Neal A. Maxwell Institute</p></div>
+          </div>
+          <p class="tagline">Scholar of scripture and theology, and a conference keynote.</p>
+        </figure>
+        <figure>
+          <div class="portrait">
+            <img src="brand_assets/speakers/wilcox.webp" alt="Bradley R. Wilcox" width="400" height="400">
+            <div class="portrait-cap"><h3>Bradley R. Wilcox</h3><p>Professor of Ancient Scripture, BYU</p></div>
+          </div>
+          <p class="tagline">Keynote speaker across the two days in Provo.</p>
+        </figure>
+        <figure>
+          <div class="portrait">
+            <img src="brand_assets/speakers/rane.webp" alt="Walter Rane" width="400" height="400">
+            <div class="portrait-cap"><h3>Walter Rane</h3><p>Painter</p></div>
+          </div>
+          <p class="tagline">Recognized Saturday afternoon for his body of work.</p>
+        </figure>
+        <figure>
+          <div class="portrait">
+            <img src="brand_assets/speakers/pelo.webp" alt="Brad Pelo" width="400" height="400">
+            <div class="portrait-cap"><h3>Brad Pelo</h3><p>President, The Chosen</p></div>
+          </div>
+          <p class="tagline">Joins the Saturday session recognizing Walter Rane.</p>
+        </figure>
+        <figure>
+          <div class="portrait">
+            <img src="brand_assets/speakers/johnson.webp" alt="Jane Clayson Johnson" width="400" height="400">
+            <div class="portrait-cap"><h3>Jane Clayson Johnson</h3><p>Journalist and author</p></div>
+          </div>
+          <p class="tagline">Joins the Saturday session recognizing Walter Rane.</p>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTITUTIONS -->
+  <section class="section band-card">
+    <div class="wrap stack-5">
+      <h2 class="measure-tight">The rooms these people come from</h2>
+      <div class="insts">
+        <div class="inst"><b>Neal A. Maxwell Institute</b><span>Two of the three keynote speakers hold research appointments there.</span></div>
+        <div class="inst"><b>Brigham Young University</b><span>Faculty from Ancient Scripture are on the program across both days.</span></div>
+        <div class="inst"><b>The Chosen</b><span>Its president joins the Saturday afternoon recognition session.</span></div>
+        <div class="inst"><b>Informed Saints</b><span>The podcast records its closing episode live at the conference.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ROOM -->
+  <section class="section">
+    <div class="photo-band">
+      <div class="photo photo-caption">
+        <img src="brand_assets/event/panel.webp" alt="A panel session in front of a full auditorium at the conference" width="1800" height="1200" loading="lazy">
+        <div class="cap">
+          <b>This is the room</b>
+          <p>Not a livestream and not a lecture hall of strangers. Panels, questions from the floor,
+             and people who stay afterward to keep arguing about it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONOREE SPOTLIGHT -->
+  <section class="section-lg">
+    <div class="wrap spot">
+      <div class="portrait">
+        <img src="brand_assets/speakers/rane.webp" alt="Walter Rane" width="400" height="400" loading="lazy">
+      </div>
+      <div>
+        <h2>Saturday afternoon belongs to Walter Rane</h2>
+        <p class="lede">
+          If you have seen a painting of the Book of Mormon in the last thirty years,
+          there is a good chance you have seen his work.
+        </p>
+        <p class="lede">
+          The Saturday afternoon session recognizes Rane's career, with Brad Pelo, president
+          of The Chosen, and the journalist Jane Clayson Johnson. The conference closes with a
+          live recording of the Informed Saints podcast.
+        </p>
+        <p style="margin-top:var(--s5)">
+          <a class="btn btn-primary" href="https://register.bomal.org/" data-register>Register for both days</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PODCAST -->
+  <section class="section band-paper grain">
+    <div class="wrap pod">
+      <div class="pod-img">
+        <img src="brand_assets/informed-saints-hosts.webp" alt="The hosts of the Informed Saints podcast" width="1483" height="775" loading="lazy">
+      </div>
+      <div>
+        <h2>The conference closes on the record</h2>
+        <p class="lede" style="margin-top:var(--s3)">
+          Informed Saints records its closing episode in the room, with the conference audience.
+          You are not watching a replay later. You are in it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSER -->
+  <section class="section-lg band-bark grain">
+    <div class="wrap-narrow closer">
+      <h2>Two days. One room. Thirty dollars.</h2>
+      <p class="lede">
+        The Friday banquet and the Saturday box lunch have already sold out.
+        Conference registration is still open.
+      </p>
+      <a class="btn btn-onbark btn-lg" href="https://register.bomal.org/" data-register>Register for the conference</a>
+      <p class="cta-sub"><span data-price-note>Full registration, both days.</span> Groups receive an automatic ten percent discount.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="sitefoot">
+  <div class="wrap center stack-2">
+    <p>Book of Mormon Arts &amp; Letters Foundation, Inc. A 501(c)(3) nonprofit.</p>
+    <p>Ancient culture, modern impact.</p>
+  </div>
+</footer>
+
+<div class="stickybar">
+  <p class="sb-price"><strong><span data-price-now>$30</span> per person</strong>November 6 and 7, Provo</p>
+  <a class="btn btn-primary" href="https://register.bomal.org/" data-register>Register</a>
+</div>
+
+<script src="assets/lp.js"></script>
+</body>
+</html>

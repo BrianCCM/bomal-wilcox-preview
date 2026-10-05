@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-asset-base="brand_assets/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wilcox ad landing pages | Book of Mormon Culture Conference</title>
+<meta name="description" content="Two landing pages built for the live Bradley R. Wilcox ad. Review and pick a direction.">
+<link rel="icon" href="brand_assets/logo-icon.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  body{ padding-bottom:0; }
+
+  .topbar{ padding-block:var(--s4); border-bottom:1px solid var(--line); }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); flex-wrap:wrap; }
+  .topbar img{ height:68px; width:auto; display:block; }
+  .topbar .tag{ font-size:.9375rem; font-weight:700; color:var(--ink-soft); text-align:right; line-height:1.4; }
+
+  .intro{ padding-block:var(--s7) var(--s6); }
+  .intro-grid{ display:grid; gap:var(--s6); align-items:center; }
+  @media (min-width:860px){ .intro-grid{ grid-template-columns:1.15fr .85fr; gap:var(--s7); } }
+  .intro h1{ max-width:18ch; }
+  .intro .lede{ margin-top:var(--s4); }
+
+  .whocard{ display:flex; align-items:center; gap:var(--s4); padding:var(--s4);
+    background:var(--card); border:1px solid var(--line); border-radius:var(--rad-xl); box-shadow:var(--sh-2); }
+  .whocard .portrait{ width:104px; height:104px; flex:none; border-radius:50%; }
+  .whocard .portrait::after{ display:none; }
+  .whocard b{ display:block; font-family:'Libre Baskerville',Georgia,serif; font-weight:700;
+    font-size:1.2rem; letter-spacing:-.025em; line-height:1.25; }
+  .whocard span{ display:block; margin-top:.3rem; font-size:.9375rem; color:var(--ink-soft); line-height:1.55; }
+  .whocard em{ display:block; margin-top:var(--s2); font-style:normal; font-size:.875rem;
+    font-weight:700; color:var(--green-deep); }
+
+  .options{ display:grid; gap:var(--s5); }
+  @media (min-width:860px){ .options{ grid-template-columns:repeat(2,1fr); } }
+
+  .opt{ display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line);
+    border-radius:var(--rad-xl); box-shadow:var(--sh-1); overflow:hidden;
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
+  .opt:hover{ transform:translateY(-4px); box-shadow:var(--sh-3); }
+
+  .opt-shot{ border-bottom:1px solid var(--line-soft); overflow:hidden; background:var(--paper); }
+  .opt-shot img{ display:block; width:100%; height:auto; }
+
+  .opt-top{ padding:var(--s5) var(--s5) var(--s4); }
+  .opt-letter{ display:inline-flex; align-items:center; justify-content:center;
+    width:38px; height:38px; border-radius:50%; background:var(--green); color:#fff;
+    font-family:'Libre Baskerville',Georgia,serif; font-weight:700; font-size:1.1rem; margin-bottom:var(--s3); }
+  .opt-top h2{ font-size:1.5rem; margin-bottom:var(--s2); }
+  .opt-top .what{ font-size:1rem; color:var(--ink-soft); line-height:1.65; }
+
+  .opt-body{ padding:0 var(--s5) var(--s4); flex:1; display:flex; flex-direction:column; gap:var(--s4); }
+  .opt-row b{ display:block; font-size:.875rem; font-weight:900; margin-bottom:.3rem; }
+  .opt-row p{ font-size:.9375rem; color:var(--ink-soft); line-height:1.65; }
+  .opt-structure{ list-style:none; margin:0; padding:0; font-size:.875rem; color:var(--ink-soft); line-height:1.5; }
+  .opt-structure li{ display:flex; gap:.55rem; }
+  .opt-structure li + li{ margin-top:.4rem; }
+  .opt-structure .n{ flex:none; width:1.3rem; font-weight:900; color:var(--tan); }
+
+  .opt-foot{ margin-top:auto; padding:var(--s4) var(--s5) var(--s5); }
+
+  .mech{ display:grid; gap:var(--s5); }
+  @media (min-width:800px){ .mech{ grid-template-columns:repeat(3,1fr); } }
+  .mech h3{ margin-bottom:var(--s2); }
+  .mech p{ font-size:.9375rem; color:var(--ink-soft); line-height:1.65; }
+  .mech code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.8125rem;
+    background:rgba(133,120,74,.14); padding:.12rem .4rem; border-radius:4px; }
+
+  .note{ border-left:3px solid var(--brown); padding-left:var(--s4); }
+  .note p + p{ margin-top:var(--s3); }
+  .note b{ font-weight:900; }
+  .note code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.85em; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <img src="brand_assets/logo-full.webp" alt="Book of Mormon Arts &amp; Letters Foundation">
+    <p class="tag">Wilcox ad landing pages<br>Culture Conference, November 2026</p>
+  </div>
+</header>
+
+<main>
+  <section class="intro grain">
+    <div class="wrap intro-grid">
+      <div>
+        <h1>Two pages built for the Bradley R. Wilcox ad.</h1>
+        <p class="lede measure">
+          Both are dedicated to him rather than switched to him by a URL parameter, so every
+          visitor sees his face and his name whether or not the ad platform preserves the link.
+          They take the same ad and make two different cases for registering. Pick one, or run
+          both and let the click-through decide.
+        </p>
+      </div>
+      <div class="whocard">
+        <div class="portrait">
+          <img src="brand_assets/speakers/wilcox.webp" alt="Bradley R. Wilcox" width="400" height="400">
+        </div>
+        <div>
+          <b>Bradley R. Wilcox</b>
+          <span>Professor of Ancient Scripture, BYU</span>
+          <em>Ad live now</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="options">
+
+        <article class="opt">
+          <div class="opt-shot">
+            <img src="brand_assets/shots/page-a.webp" alt="Preview of landing page A" width="1120" height="700" loading="lazy">
+          </div>
+          <div class="opt-top">
+            <p class="opt-letter">A</p>
+            <h2>Direct response</h2>
+            <p class="what">
+              His face, the date, the price and a button, all above the fold. The page asks for
+              the registration immediately and spends the rest of its length removing reasons to
+              hesitate.
+            </p>
+          </div>
+          <div class="opt-body">
+            <div class="opt-row">
+              <b>The bet</b>
+              <p>His audience already trusts him. They do not need convincing that the conference
+                 is worthwhile, only the details and a fast way to say yes.</p>
+            </div>
+            <div class="opt-row">
+              <b>Structure</b>
+              <ul class="opt-structure">
+                <li><span class="n">1</span><span>Wilcox hero with the single CTA</span></li>
+                <li><span class="n">2</span><span>Four-fact strip: when, where, price, format</span></li>
+                <li><span class="n">3</span><span>The rest of the speaker lineup</span></li>
+                <li><span class="n">4</span><span>Three objection answers beside a real photo</span></li>
+                <li><span class="n">5</span><span>Closing CTA band</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="opt-foot">
+            <a class="btn btn-primary btn-block" href="direct.html">Open page A</a>
+          </div>
+        </article>
+
+        <article class="opt">
+          <div class="opt-shot">
+            <img src="brand_assets/shots/page-b.webp" alt="Preview of landing page B" width="1120" height="700" loading="lazy">
+          </div>
+          <div class="opt-top">
+            <p class="opt-letter">B</p>
+            <h2>Authority wall</h2>
+            <p class="what">
+              Opens on Wilcox, then widens out to the five other names on the program. The
+              argument is that he is not a lone draw, he is one of six reasons the room is worth
+              two days.
+            </p>
+          </div>
+          <div class="opt-body">
+            <div class="opt-row">
+              <b>The bet</b>
+              <p>His followers came for him but have never heard of the foundation. Showing the
+                 company he is keeping raises the value of the ticket beyond one speaker.</p>
+            </div>
+            <div class="opt-row">
+              <b>Structure</b>
+              <ul class="opt-structure">
+                <li><span class="n">1</span><span>Wilcox hero, one CTA</span></li>
+                <li><span class="n">2</span><span>Six-portrait wall with roles and context</span></li>
+                <li><span class="n">3</span><span>The institutions behind them</span></li>
+                <li><span class="n">4</span><span>A photo of the actual room</span></li>
+                <li><span class="n">5</span><span>Rane spotlight, podcast, CTA band</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="opt-foot">
+            <a class="btn btn-primary btn-block" href="authority.html">Open page B</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-card">
+    <div class="wrap stack-5">
+      <div class="measure">
+        <h2>How these differ from the general set</h2>
+        <p class="lede" style="margin-top:var(--s3)">
+          These are independent copies, not the shared pages with a parameter on the end.
+          Editing one of them changes nothing anywhere else.
+        </p>
+      </div>
+      <div class="mech">
+        <div>
+          <h3>Dedicated, not switched</h3>
+          <p>
+            Each page declares <code>data-speaker-dedicated</code>, so Wilcox shows and the
+            message-match copy reads as a real arrival even when the URL carries no
+            <code>?s=</code>. Ad platforms strip parameters more often than you would like.
+          </p>
+        </div>
+        <div>
+          <h3>Attribution survives anyway</h3>
+          <p>
+            Every CTA goes to register.bomal.org carrying whatever UTMs arrived, and falls back
+            to <code>utm_content=wilcox</code> when the ad platform sends none. His registrations
+            stay countable.
+          </p>
+        </div>
+        <div>
+          <h3>Same urgency switch</h3>
+          <p>
+            One date in <code>assets/lp.js</code> drives the top strip and every price on both
+            pages. Before October 10 it counts down the early bird. After, it flips itself to the
+            event date and the sold-out add-ons.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-paper grain">
+    <div class="wrap-narrow">
+      <div class="note">
+        <h2 style="margin-bottom:var(--s3)">Notes before you start cutting</h2>
+        <p>
+          <b>Wilcox has no quote on either page.</b> Nothing attributes words to him. A single
+          line in his own voice in the hero is the strongest upgrade available to both, and the
+          slot is already wired in <code>assets/lp.js</code>.
+        </p>
+        <p>
+          <b>He appears twice on page B</b>, once in the hero and once in the wall, which is
+          headed "The six names on the program" so the repeat reads as intentional rather than
+          as a mistake. The wall is the whole argument of that page, so dropping him from it
+          would cost more than the repetition does. Easy to change if you disagree.
+        </p>
+        <p>
+          <b>Still no written social proof.</b> No attendee quotes, no attendance number, no
+          count of years running. For traffic that only knows Wilcox, that is the biggest
+          remaining gap.
+        </p>
+        <p>
+          <b>Facts came from bomal.org and register.bomal.org</b> on October 5, 2026. The ad is
+          live, so confirm the price, the dates and the sold-out add-ons before spend scales.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="sitefoot">
+  <div class="wrap center stack-2">
+    <p>Book of Mormon Arts &amp; Letters Foundation, Inc. A 501(c)(3) nonprofit.</p>
+    <p>Internal review page. Not linked from the live site.</p>
+  </div>
+</footer>
+
+</body>
+</html>

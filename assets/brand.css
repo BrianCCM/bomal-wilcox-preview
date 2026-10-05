@@ -1,0 +1,234 @@
+/* ============================================================
+   Book of Mormon Arts & Letters Foundation
+   Landing page brand layer. Shared by all four options.
+   Palette and type pulled from the live bomal.org build.
+   ============================================================ */
+
+:root{
+  /* Ink */
+  --ink:        #2E261F;   /* hsl(30 20% 15%) site foreground */
+  --ink-soft:   #5F5547;   /* hsl(30 15% 45%) site muted-foreground */
+  --ink-faint:  #8C8272;
+
+  /* Paper */
+  --cream:      #FAF8F3;   /* hsl(40 30% 97%) site background */
+  --paper:      #F3EEE1;   /* warmer band */
+  --card:       #FFFDF9;   /* hsl(40 20% 99%) site card */
+  --line:       #E3DCCC;   /* hsl(40 20% 85%) site border */
+  --line-soft:  #EFEADD;
+
+  /* Green: the logo mark is a deep forest green, the site chrome a muted olive. */
+  --green:      #006700;   /* sampled from logo-full.webp */
+  --green-deep: #0A4A12;
+  --green-dark: #255125;   /* sampled from logo-full.webp */
+  --olive:      #7D975E;   /* hsl(93 23% 48%) site primary */
+  --olive-dark: #6E8750;   /* hsl(93 23% 44%) site faq-q-bg */
+
+  /* Earth */
+  --tan:        #85784A;   /* sampled from logo-full.webp */
+  --tan-light:  #D2C7AD;   /* sampled from logo-full.webp */
+  --brown:      #7C542D;   /* hsl(30 47% 33%) site brown */
+  --bark:       #463D2A;   /* hsl(40 25% 22%) site nav */
+
+  /* Spacing scale. Intentional tokens, not arbitrary steps. */
+  --s1: .5rem;  --s2: .75rem; --s3: 1rem;   --s4: 1.5rem;
+  --s5: 2rem;   --s6: 3rem;   --s7: 4.5rem; --s8: 6.5rem;
+
+  --rad:   .5rem;
+  --rad-lg:.75rem;
+  --rad-xl:1.25rem;
+
+  /* Elevation. Dark only, never a coloured glow. */
+  --sh-1: 0 1px 2px rgba(29,23,16,.06), 0 2px 6px rgba(29,23,16,.05);
+  --sh-2: 0 2px 4px rgba(29,23,16,.07), 0 8px 20px rgba(29,23,16,.08);
+  --sh-3: 0 4px 8px rgba(29,23,16,.08), 0 18px 44px rgba(29,23,16,.12);
+
+  --ease: cubic-bezier(.34,1.3,.5,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+/* The hidden attribute has to outrank author display rules, or speaker-only
+   blocks and struck-through prices render when they should not. */
+[hidden]{ display:none !important; }
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:1.0625rem;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,.display{
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-weight:700;
+  line-height:1.15;
+  letter-spacing:-.03em;
+  margin:0;
+  color:var(--ink);
+}
+h1{ font-size:clamp(2.05rem,4.6vw,3.15rem); }
+h2{ font-size:clamp(1.65rem,3.6vw,2.5rem); }
+h3{ font-size:clamp(1.1rem,1.8vw,1.35rem); letter-spacing:-.015em; }
+p{ margin:0; }
+a{ color:inherit; }
+
+/* Body copy sits at a comfortable measure. */
+.lede{ font-size:clamp(1.0625rem,1.6vw,1.2rem); color:var(--ink-soft); line-height:1.7; }
+.measure{ max-width:62ch; }
+.measure-tight{ max-width:46ch; }
+
+/* ---------- Layout ---------- */
+.wrap{ width:100%; max-width:1120px; margin-inline:auto; padding-inline:var(--s4); }
+.wrap-narrow{ width:100%; max-width:760px; margin-inline:auto; padding-inline:var(--s4); }
+.section{ padding-block:var(--s7); }
+.section-lg{ padding-block:var(--s8); }
+
+/* Textured paper band, built from the hero banner's own cream. */
+.band-paper{ background:var(--paper); }
+.band-card { background:var(--card); }
+.band-bark {
+  background:
+    radial-gradient(900px 420px at 18% 0%,  rgba(125,151,94,.22), transparent 62%),
+    radial-gradient(780px 460px at 86% 100%, rgba(124,84,45,.26), transparent 60%),
+    var(--bark);
+  color:var(--cream);
+}
+.band-bark h1,.band-bark h2,.band-bark h3{ color:#fff; }
+.band-bark .lede{ color:rgba(250,248,243,.78); }
+
+/* Fine grain so large flat fields do not look like plastic. */
+.grain{ position:relative; isolation:isolate; }
+.grain::after{
+  content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  opacity:.5; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.19'/%3E%3C/svg%3E");
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-block; text-align:center;
+  font-family:'Lato',sans-serif; font-weight:700; font-size:1.0625rem;
+  letter-spacing:.005em; text-decoration:none; cursor:pointer;
+  padding:1rem 1.9rem; border-radius:var(--rad); border:1px solid transparent;
+  transition:transform .22s var(--ease), opacity .22s var(--ease), background-color .22s var(--ease), border-color .22s var(--ease), color .22s var(--ease);
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn:active{ transform:translateY(0); }
+.btn:focus-visible{ outline:3px solid var(--bark); outline-offset:3px; }
+
+.btn-primary{ background:var(--green); color:#fff; box-shadow:var(--sh-2); }
+.btn-primary:hover{ background:var(--green-deep); }
+
+.btn-onbark{ background:#fff; color:var(--green-deep); box-shadow:var(--sh-2); }
+.btn-onbark:hover{ background:#F2EFE7; }
+.btn-onbark:focus-visible{ outline-color:#fff; }
+
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn-ghost:hover{ border-color:var(--tan); background:rgba(133,120,74,.07); }
+
+.btn-lg{ padding:1.15rem 2.3rem; font-size:1.125rem; }
+.btn-block{ width:100%; }
+
+/* ---------- Pieces ---------- */
+.card{
+  background:var(--card); border:1px solid var(--line);
+  border-radius:var(--rad-lg); box-shadow:var(--sh-1);
+}
+
+.rule{ height:1px; background:var(--line); border:0; margin:0; }
+
+/* Portrait treatment: colour layer plus a bottom scrim so the grey studio
+   backdrops of the supplied headshots sit in the warm palette. */
+.portrait{ position:relative; overflow:hidden; background:var(--tan-light); }
+.portrait img{ display:block; width:100%; height:100%; object-fit:cover; }
+.portrait::before{
+  content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:var(--tan); mix-blend-mode:multiply; opacity:.16;
+}
+.portrait::after{
+  content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(to top, rgba(29,23,16,.6), rgba(29,23,16,0) 55%);
+}
+.portrait > .portrait-cap{ position:absolute; z-index:3; left:0; right:0; bottom:0; padding:var(--s3); color:#fff; }
+
+/* Urgency strip */
+.urgency{
+  background:var(--brown); color:#fff;
+  font-size:.9375rem; font-weight:600; letter-spacing:.005em;
+  text-align:center; padding:.7rem var(--s3); line-height:1.45;
+}
+.urgency b{ font-weight:900; }
+
+/* Sticky mobile action bar. Every option carries one. */
+.stickybar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  background:rgba(255,253,249,.97); border-top:1px solid var(--line);
+  box-shadow:0 -4px 20px rgba(29,23,16,.1);
+  padding:.7rem var(--s3) calc(.7rem + env(safe-area-inset-bottom));
+  display:flex; align-items:center; gap:var(--s3);
+}
+.stickybar .sb-price{ font-size:.875rem; line-height:1.3; color:var(--ink-soft); flex:1; }
+.stickybar .sb-price strong{ display:block; color:var(--ink); font-weight:900; font-size:1rem; }
+.stickybar .btn{ padding:.8rem 1.4rem; font-size:1rem; }
+@media (min-width:860px){ .stickybar{ display:none; } }
+@media (max-width:859px){ body{ padding-bottom:5.5rem; } }
+
+/* Footer */
+.sitefoot{ background:var(--bark); color:rgba(250,248,243,.7); font-size:.875rem; padding-block:var(--s5); }
+.sitefoot a{ color:rgba(250,248,243,.9); }
+.sitefoot a:hover{ color:#fff; }
+
+/* Shared helpers */
+.stack-1>*+*{ margin-top:var(--s1); }
+.stack-2>*+*{ margin-top:var(--s2); }
+.stack-3>*+*{ margin-top:var(--s3); }
+.stack-4>*+*{ margin-top:var(--s4); }
+.stack-5>*+*{ margin-top:var(--s5); }
+.stack-6>*+*{ margin-top:var(--s6); }
+.center{ text-align:center; }
+.mx-auto{ margin-inline:auto; }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  .btn:hover{ transform:none; }
+}
+
+/* Phone: the logo lockup and the date line crowd each other in the topbar.
+   Raised specificity so this lands after each page's own .topbar rules. */
+@media (max-width:560px){
+  body .topbar img{ height:50px; }
+  body .topbar .when,
+  body .topbar .tag{ font-size:.8125rem; line-height:1.4; }
+  body .topbar .wrap{ gap:var(--s2); }
+}
+
+/* ---------- Event photography ----------
+   Real photos from a previous conference. Treated lightly on purpose: these
+   are social proof, so faces have to stay legible. A faint warm multiply ties
+   them to the palette without muddying skin tones. */
+.photo{ position:relative; overflow:hidden; border-radius:var(--rad-lg);
+  box-shadow:var(--sh-2); background:var(--tan-light); }
+.photo img{ display:block; width:100%; height:100%; object-fit:cover; }
+.photo::before{ content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:var(--tan); mix-blend-mode:multiply; opacity:.1; }
+
+/* Only where copy sits on top of the image. */
+.photo-caption::after{ content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(to top, rgba(29,23,16,.78), rgba(29,23,16,.1) 55%, rgba(29,23,16,0)); }
+.photo-caption .cap{ position:absolute; z-index:3; left:0; right:0; bottom:0;
+  padding:var(--s5); color:#fff; }
+.photo-caption .cap p{ font-size:1.0625rem; line-height:1.6; max-width:48ch;
+  color:rgba(255,255,255,.92); }
+.photo-caption .cap b{ display:block; font-family:'Libre Baskerville',Georgia,serif;
+  font-weight:700; font-size:1.25rem; letter-spacing:-.02em; margin-bottom:.3rem; color:#fff; }
+
+/* Full-bleed band that still respects the page gutter on phones. */
+.photo-band{ width:100%; max-width:1280px; margin-inline:auto; padding-inline:var(--s4); }
+.photo-band .photo{ aspect-ratio:16/9; border-radius:var(--rad-xl); }
+@media (max-width:620px){ .photo-band .photo{ aspect-ratio:4/3; } }
