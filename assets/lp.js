@@ -20,7 +20,7 @@ var REGISTER_URL = 'https://register.bomal.org/';
    them. See content-gaps.md. */
 var SPEAKERS = {
   givens:  { name: 'Terryl Givens',       role: 'Senior Research Fellow, Neal A. Maxwell Institute', img: 'givens.webp',  quote: '' },
-  welch:   { name: 'Rosalynde F. Welch',  role: 'Associate Director, Neal A. Maxwell Institute',     img: 'welch.webp',   quote: '' },
+  welch:   { name: 'Rosalynde F. Welch',  role: 'Associate Director, Neal A. Maxwell Institute',     img: 'welch-portrait.webp', quote: '' },
   wilcox:  { name: 'Bradley R. Wilcox',   role: 'Professor of Ancient Scripture, BYU',               img: 'wilcox-portrait.webp', quote: '' },
   rane:    { name: 'Walter Rane',         role: 'Painter, honored Saturday afternoon',               img: 'rane.webp',    quote: '' },
   pelo:    { name: 'Brad Pelo',           role: 'President, The Chosen',                             img: 'pelo.webp',    quote: '' },
@@ -98,7 +98,7 @@ var SPEAKERS = {
     } else {
       live = false;
       document.querySelectorAll('[data-urgency]').forEach(function (el) {
-        el.innerHTML = '<b>November 6 and 7</b> at the Provo Marriott. The banquet and the box lunch are already sold out.';
+        el.innerHTML = '<b>November 6 and 7</b> at the Provo Marriott. Banquet and box lunch tickets are available while they last.';
       });
       document.querySelectorAll('[data-price-now]').forEach(function (el) { el.textContent = '$30'; });
       document.querySelectorAll('[data-price-was]').forEach(function (el) { el.hidden = true; });
