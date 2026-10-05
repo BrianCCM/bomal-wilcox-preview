@@ -21,7 +21,7 @@ var REGISTER_URL = 'https://register.bomal.org/';
 var SPEAKERS = {
   givens:  { name: 'Terryl Givens',       role: 'Senior Research Fellow, Neal A. Maxwell Institute', img: 'givens.webp',  quote: '' },
   welch:   { name: 'Rosalynde F. Welch',  role: 'Associate Director, Neal A. Maxwell Institute',     img: 'welch.webp',   quote: '' },
-  wilcox:  { name: 'Bradley R. Wilcox',   role: 'Professor of Ancient Scripture, BYU',               img: 'wilcox.webp',  quote: '' },
+  wilcox:  { name: 'Bradley R. Wilcox',   role: 'Professor of Ancient Scripture, BYU',               img: 'wilcox-portrait.webp', quote: '' },
   rane:    { name: 'Walter Rane',         role: 'Painter, honored Saturday afternoon',               img: 'rane.webp',    quote: '' },
   pelo:    { name: 'Brad Pelo',           role: 'President, The Chosen',                             img: 'pelo.webp',    quote: '' },
   johnson: { name: 'Jane Clayson Johnson',role: 'Journalist and author',                             img: 'johnson.webp', quote: '' }
