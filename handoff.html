@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Developer handoff | Wilcox landing pages</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="brand_assets/logo-icon.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  body{ padding-bottom:0; }
+  .topbar{ padding-block:var(--s4); border-bottom:1px solid var(--line); }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); flex-wrap:wrap; }
+  .topbar img{ height:60px; width:auto; display:block; }
+  .topbar .tag{ font-size:.9375rem; font-weight:700; color:var(--ink-soft); text-align:right; line-height:1.4; }
+  .intro{ padding-block:var(--s6) var(--s5); }
+  .intro h1{ max-width:20ch; }
+  .intro .lede{ margin-top:var(--s4); }
+  h2{ margin-bottom:var(--s3); }
+  .step{ padding-block:var(--s5); border-top:1px solid var(--line); }
+  .step p + p{ margin-top:var(--s3); }
+  .two{ display:grid; gap:var(--s5); }
+  @media (min-width:800px){ .two{ grid-template-columns:1fr 1fr; gap:var(--s6); } }
+  ul{ margin:var(--s3) 0 0; padding-left:1.1rem; }
+  li{ font-size:.9375rem; line-height:1.7; }
+  li + li{ margin-top:.2rem; }
+  code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.85em;
+    background:rgba(133,120,74,.14); padding:.1rem .35rem; border-radius:4px; }
+  .prompt{ margin-top:var(--s5); background:var(--card); border:1px solid var(--line);
+    border-radius:var(--rad-lg); box-shadow:var(--sh-1); overflow:hidden; }
+  .prompt-head{ display:flex; align-items:flex-start; justify-content:space-between;
+    gap:var(--s4); padding:var(--s4) var(--s5); border-bottom:1px solid var(--line-soft); flex-wrap:wrap; }
+  .prompt-head h3{ display:flex; align-items:center; gap:var(--s2); margin-bottom:.3rem; }
+  .prompt-head p{ font-size:.9375rem; color:var(--ink-soft); line-height:1.6; max-width:62ch; }
+  .num{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--green); color:#fff; font-family:'Lato',sans-serif;
+    font-weight:900; font-size:.9375rem; flex:none; }
+  .copy{ flex:none; font-family:'Lato',sans-serif; font-weight:700; font-size:.9375rem;
+    padding:.7rem 1.2rem; border-radius:var(--rad); border:1px solid transparent;
+    background:var(--green); color:#fff; cursor:pointer;
+    transition:transform .2s var(--ease), background-color .2s var(--ease); }
+  .copy:hover{ transform:translateY(-1px); background:var(--green-deep); }
+  .copy:focus-visible{ outline:3px solid var(--bark); outline-offset:3px; }
+  .copy.done{ background:var(--tan); }
+  pre{ margin:0; max-height:300px; overflow:auto; background:#2E261F; }
+  pre code{ display:block; padding:var(--s4); background:none; color:#E8E2D4;
+    font-size:.78rem; line-height:1.6; white-space:pre-wrap; word-break:break-word; }
+  .note{ border-left:3px solid var(--brown); padding-left:var(--s4); }
+  .note p + p{ margin-top:var(--s3); }
+  .note b{ font-weight:900; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <img src="brand_assets/logo-full.webp" alt="Book of Mormon Arts &amp; Letters Foundation">
+    <p class="tag">Developer handoff<br>Wilcox landing pages</p>
+  </div>
+</header>
+
+<main>
+  <section class="intro grain">
+    <div class="wrap">
+      <h1>Putting these two pages on bomal.org</h1>
+      <p class="lede measure">
+        Three prompts to paste into Lovable, in order. They add two standalone landing pages at
+        <code>/wilcox</code> and <code>/wilcox-lineup</code> without touching anything already on
+        the site. Everything the prompts need is included in them, so there is nothing to
+        reverse engineer from the preview.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-block:0">
+    <div class="wrap">
+      <div class="step">
+        <h2>Read this first</h2>
+        <div class="two">
+          <div>
+            <p><b>The design is finished. Do not let the AI rebuild it.</b> The prompts hand over
+            tested CSS and say so explicitly. If Lovable offers to redo it in Tailwind or with
+            shadcn components, decline. That is the one thing most likely to change how these look.</p>
+            <p>Every CSS rule is scoped to a single <code>.bomal-lp</code> wrapper, so none of it can
+            reach the rest of bomal.org. That scoping has been tested against a hostile host page.
+            Do not remove it.</p>
+          </div>
+          <div>
+            <p><b>These pages intentionally have no header, footer or navigation.</b> They are ad
+            destinations, and every link out of them is a way to lose the registration. The only
+            outbound links go to register.bomal.org.</p>
+            <p><b>Route names are a suggestion.</b> Change <code>/wilcox</code> and
+            <code>/wilcox-lineup</code> to whatever you prefer in prompt 1, just keep them
+            consistent in prompts 2 and 3.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>The 11 images</h2>
+        <p class="lede measure">Prompt 1 lists these with their download links. They are public, so
+        Lovable can usually fetch them directly. If it cannot, download them here and upload them
+        by hand into <code>public/lp-assets/</code>, keeping the sub-folders.</p>
+        <ul><li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/event/audience-smiling.webp">event/audience-smiling.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/event/panel.webp">event/panel.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/informed-saints-hosts.webp">informed-saints-hosts.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/logo-full.webp">logo-full.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/logo-icon.webp">logo-icon.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/givens.webp">speakers/givens.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/johnson.webp">speakers/johnson.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/pelo.webp">speakers/pelo.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/rane.webp">speakers/rane.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/welch-portrait.webp">speakers/welch-portrait.webp</a></li>
+<li><a href="https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/wilcox-portrait.webp">speakers/wilcox-portrait.webp</a></li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:var(--s4)">
+    <div class="wrap">
+      <h2>The prompts</h2>
+      <p class="lede measure">Run them in order and let each finish before starting the next.</p>
+      
+  <section class="prompt" id="p1">
+    <div class="prompt-head">
+      <div>
+        <h3><span class="num">1</span>Setup: assets, styles, routes</h3>
+        <p>Run this first. It uploads the images, adds the three stylesheets and the behaviour module, and creates two empty routes. Nothing renders yet.</p>
+      </div>
+      <button class="copy" data-target="code1">Copy prompt</button>
+    </div>
+    <pre><code id="code1">I need to add two standalone marketing landing pages to this site for the Book of Mormon Culture Conference. They are destinations for paid social ads, so they must NOT use the site header, footer or navigation. Each one stands alone.
+
+IMPORTANT: do not rebuild the design using Tailwind or shadcn components. I am giving you finished, tested CSS. Use it exactly as provided. Re-implementing it will change how the pages look.
+
+STEP 1 - Add the images.
+Create a folder public/lp-assets/ and download these 11 files into it, keeping the exact sub-paths:
+
+  public/lp-assets/event/audience-smiling.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/event/audience-smiling.webp
+  public/lp-assets/event/panel.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/event/panel.webp
+  public/lp-assets/informed-saints-hosts.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/informed-saints-hosts.webp
+  public/lp-assets/logo-full.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/logo-full.webp
+  public/lp-assets/logo-icon.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/logo-icon.webp
+  public/lp-assets/speakers/givens.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/givens.webp
+  public/lp-assets/speakers/johnson.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/johnson.webp
+  public/lp-assets/speakers/pelo.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/pelo.webp
+  public/lp-assets/speakers/rane.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/rane.webp
+  public/lp-assets/speakers/welch-portrait.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/welch-portrait.webp
+  public/lp-assets/speakers/wilcox-portrait.webp   &lt;-  https://brianccm.github.io/bomal-wilcox-preview/brand_assets/speakers/wilcox-portrait.webp
+
+STEP 2 - Add the stylesheets, exactly as given.
+Every rule is already scoped to .bomal-lp so none of it can affect the rest of the site. Do not remove that scoping and do not reformat the files.
+
+Create src/styles/bomal-lp.css:
+----- BEGIN bomal-lp.css -----
+/* Book of Mormon Culture Conference landing pages: shared styles.
+   Every rule is scoped to .bomal-lp so none of it can reach the rest of the site. */
+.bomal-lp { --ink: #2E261F; --ink-soft: #5F5547; --ink-faint: #8C8272; --cream: #FAF8F3; --paper: #F3EEE1; --card: #FFFDF9; --line: #E3DCCC; --line-soft: #EFEADD; --green: #006700; --green-deep: #0A4A12; --green-dark: #255125; --olive: #7D975E; --olive-dark: #6E8750; --tan: #85784A; --tan-light: #D2C7AD; --brown: #7C542D; --bark: #463D2A; --s1: .5rem; --s2: .75rem; --s3: 1rem; --s4: 1.5rem; --s5: 2rem; --s6: 3rem; --s7: 4.5rem; --s8: 6.5rem; --rad: .5rem; --rad-lg:.75rem; --rad-xl:1.25rem; --sh-1: 0 1px 2px rgba(29,23,16,.06), 0 2px 6px rgba(29,23,16,.05); --sh-2: 0 2px 4px rgba(29,23,16,.07), 0 8px 20px rgba(29,23,16,.08); --sh-3: 0 4px 8px rgba(29,23,16,.08), 0 18px 44px rgba(29,23,16,.12); --ease: cubic-bezier(.34,1.3,.5,1); }
+.bomal-lp *, .bomal-lp *::before, .bomal-lp *::after { box-sizing:border-box; }
+.bomal-lp [hidden] { display:none !important; }
+.bomal-lp { -webkit-text-size-adjust:100%; }
+.bomal-lp { margin:0; background:var(--cream); color:var(--ink); font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:1.0625rem; line-height:1.7; -webkit-font-smoothing:antialiased; }
+.bomal-lp h1, .bomal-lp h2, .bomal-lp h3, .bomal-lp .display { font-family:'Libre Baskerville',Georgia,serif; font-weight:700; line-height:1.15; letter-spacing:-.03em; margin:0; color:var(--ink); }
+.bomal-lp h1 { font-size:clamp(2.05rem,4.6vw,3.15rem); }
+.bomal-lp h2 { font-size:clamp(1.65rem,3.6vw,2.5rem); }
+.bomal-lp h3 { font-size:clamp(1.1rem,1.8vw,1.35rem); letter-spacing:-.015em; }
+.bomal-lp p { margin:0; }
+.bomal-lp a { color:inherit; }
+.bomal-lp .lede { font-size:clamp(1.0625rem,1.6vw,1.2rem); color:var(--ink-soft); line-height:1.7; }
+.bomal-lp .measure { max-width:62ch; }
+.bomal-lp .measure-tight { max-width:46ch; }
+.bomal-lp .wrap { width:100%; max-width:1120px; margin-inline:auto; padding-inline:var(--s4); }
+.bomal-lp .wrap-narrow { width:100%; max-width:760px; margin-inline:auto; padding-inline:var(--s4); }
+.bomal-lp .section { padding-block:var(--s7); }
+.bomal-lp .section-lg { padding-block:var(--s8); }
+.bomal-lp .band-paper { background:var(--paper); }
+.bomal-lp .band-card { background:var(--card); }
+.bomal-lp .band-bark { background: radial-gradient(900px 420px at 18% 0%, rgba(125,151,94,.22), transparent 62%), radial-gradient(780px 460px at 86% 100%, rgba(124,84,45,.26), transparent 60%), var(--bark); color:var(--cream); }
+.bomal-lp .band-bark h1, .bomal-lp .band-bark h2, .bomal-lp .band-bark h3 { color:#fff; }
+.bomal-lp .band-bark .lede { color:rgba(250,248,243,.78); }
+.bomal-lp .grain { position:relative; isolation:isolate; }
+.bomal-lp .grain::after { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.5; mix-blend-mode:multiply; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.19'/%3E%3C/svg%3E"); }
+.bomal-lp .btn { display:inline-block; text-align:center; font-family:'Lato',sans-serif; font-weight:700; font-size:1.0625rem; letter-spacing:.005em; text-decoration:none; cursor:pointer; padding:1rem 1.9rem; border-radius:var(--rad); border:1px solid transparent; transition:transform .22s var(--ease), opacity .22s var(--ease), background-color .22s var(--ease), border-color .22s var(--ease), color .22s var(--ease); }
+.bomal-lp .btn:hover { transform:translateY(-2px); }
+.bomal-lp .btn:active { transform:translateY(0); }
+.bomal-lp .btn:focus-visible { outline:3px solid var(--bark); outline-offset:3px; }
+.bomal-lp .btn-primary { background:var(--green); color:#fff; box-shadow:var(--sh-2); }
+.bomal-lp .btn-primary:hover { background:var(--green-deep); }
+.bomal-lp .btn-onbark { background:#fff; color:var(--green-deep); box-shadow:var(--sh-2); }
+.bomal-lp .btn-onbark:hover { background:#F2EFE7; }
+.bomal-lp .btn-onbark:focus-visible { outline-color:#fff; }
+.bomal-lp .btn-ghost { background:transparent; color:var(--ink); border-color:var(--line); }
+.bomal-lp .btn-ghost:hover { border-color:var(--tan); background:rgba(133,120,74,.07); }
+.bomal-lp .btn-lg { padding:1.15rem 2.3rem; font-size:1.125rem; }
+.bomal-lp .btn-block { width:100%; }
+.bomal-lp .card { background:var(--card); border:1px solid var(--line); border-radius:var(--rad-lg); box-shadow:var(--sh-1); }
+.bomal-lp .rule { height:1px; background:var(--line); border:0; margin:0; }
+.bomal-lp .portrait { position:relative; overflow:hidden; background:var(--tan-light); }
+.bomal-lp .portrait img { display:block; width:100%; height:100%; object-fit:cover; }
+.bomal-lp .portrait::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; background:var(--tan); mix-blend-mode:multiply; opacity:.16; }
+.bomal-lp .portrait::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(to top, rgba(29,23,16,.6), rgba(29,23,16,0) 55%); }
+.bomal-lp .portrait &gt; .portrait-cap { position:absolute; z-index:3; left:0; right:0; bottom:0; padding:var(--s3); color:#fff; }
+.bomal-lp .urgency { background:var(--brown); color:#fff; font-size:.9375rem; font-weight:600; letter-spacing:.005em; text-align:center; padding:.7rem var(--s3); line-height:1.45; }
+.bomal-lp .urgency b { font-weight:900; }
+.bomal-lp .stickybar { position:fixed; left:0; right:0; bottom:0; z-index:60; background:rgba(255,253,249,.97); border-top:1px solid var(--line); box-shadow:0 -4px 20px rgba(29,23,16,.1); padding:.7rem var(--s3) calc(.7rem + env(safe-area-inset-bottom)); display:flex; align-items:center; gap:var(--s3); }
+.bomal-lp .stickybar .sb-price { font-size:.875rem; line-height:1.3; color:var(--ink-soft); flex:1; }
+.bomal-lp .stickybar .sb-price strong { display:block; color:var(--ink); font-weight:900; font-size:1rem; }
+.bomal-lp .stickybar .btn { padding:.8rem 1.4rem; font-size:1rem; }
+@media (min-width:860px) {
+  .bomal-lp .stickybar { display:none; }
+}
+@media (max-width:859px) {
+  .bomal-lp { padding-bottom:5.5rem; }
+}
+.bomal-lp .sitefoot { background:var(--bark); color:rgba(250,248,243,.7); font-size:.875rem; padding-block:var(--s5); }
+.bomal-lp .sitefoot a { color:rgba(250,248,243,.9); }
+.bomal-lp .sitefoot a:hover { color:#fff; }
+.bomal-lp .stack-1&gt;*+* { margin-top:var(--s1); }
+.bomal-lp .stack-2&gt;*+* { margin-top:var(--s2); }
+.bomal-lp .stack-3&gt;*+* { margin-top:var(--s3); }
+.bomal-lp .stack-4&gt;*+* { margin-top:var(--s4); }
+.bomal-lp .stack-5&gt;*+* { margin-top:var(--s5); }
+.bomal-lp .stack-6&gt;*+* { margin-top:var(--s6); }
+.bomal-lp .center { text-align:center; }
+.bomal-lp .mx-auto { margin-inline:auto; }
+@media (prefers-reduced-motion:reduce) {
+  .bomal-lp *, .bomal-lp *::before, .bomal-lp *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  .bomal-lp .btn:hover { transform:none; }
+}
+@media (max-width:560px) {
+  .bomal-lp .topbar img { height:50px; }
+  .bomal-lp .topbar .when, .bomal-lp .topbar .tag { font-size:.8125rem; line-height:1.4; }
+  .bomal-lp .topbar .wrap { gap:var(--s2); }
+}
+.bomal-lp .photo { position:relative; overflow:hidden; border-radius:var(--rad-lg); box-shadow:var(--sh-2); background:var(--tan-light); }
+.bomal-lp .photo img { display:block; width:100%; height:100%; object-fit:cover; }
+.bomal-lp .photo::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; background:var(--tan); mix-blend-mode:multiply; opacity:.1; }
+.bomal-lp .photo-caption::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(to top, rgba(29,23,16,.78), rgba(29,23,16,.1) 55%, rgba(29,23,16,0)); }
+.bomal-lp .photo-caption .cap { position:absolute; z-index:3; left:0; right:0; bottom:0; padding:var(--s5); color:#fff; }
+.bomal-lp .photo-caption .cap p { font-size:1.0625rem; line-height:1.6; max-width:48ch; color:rgba(255,255,255,.92); }
+.bomal-lp .photo-caption .cap b { display:block; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; font-size:1.25rem; letter-spacing:-.02em; margin-bottom:.3rem; color:#fff; }
+.bomal-lp .photo-band { width:100%; max-width:1280px; margin-inline:auto; padding-inline:var(--s4); }
+.bomal-lp .photo-band .photo { aspect-ratio:16/9; border-radius:var(--rad-xl); }
+@media (max-width:620px) {
+  .bomal-lp .photo-band .photo { aspect-ratio:4/3; }
+}
+----- END bomal-lp.css -----
+
+Create src/styles/page-a.css:
+----- BEGIN page-a.css -----
+/* Page A only. Also scoped to .bomal-lp. */
+.bomal-lp .topbar { padding-block:var(--s4); }
+.bomal-lp .topbar .wrap { display:flex; align-items:center; justify-content:space-between; gap:var(--s3); }
+.bomal-lp .topbar img { height:68px; width:auto; display:block; }
+.bomal-lp .topbar .when { font-size:.9375rem; font-weight:700; color:var(--ink-soft); text-align:right; line-height:1.4; }
+.bomal-lp .hero { padding-block:var(--s5) var(--s7); }
+.bomal-lp .hero-grid { display:grid; gap:var(--s6); align-items:center; }
+@media (min-width:900px) {
+  .bomal-lp .hero-grid { grid-template-columns:1.1fr .9fr; gap:var(--s7); }
+}
+.bomal-lp .hero h1 { margin-bottom:var(--s3); }
+.bomal-lp .hero .lede { margin-bottom:var(--s5); }
+.bomal-lp .from-speaker { display:flex; align-items:center; gap:var(--s2); margin-bottom:var(--s4); font-size:.9375rem; font-weight:700; color:var(--green-deep); }
+.bomal-lp .from-speaker svg { flex:none; }
+.bomal-lp .cta-row { display:flex; flex-wrap:wrap; align-items:center; gap:var(--s3); }
+.bomal-lp .cta-sub { font-size:.9375rem; color:var(--ink-soft); }
+.bomal-lp .cta-sub strong { color:var(--ink); font-weight:900; }
+.bomal-lp .was { text-decoration:line-through; color:var(--ink-faint); font-weight:400; }
+.bomal-lp .hero-card { border-radius:var(--rad-xl); overflow:hidden; box-shadow:var(--sh-3); background:var(--card); }
+.bomal-lp .hero-card .portrait { aspect-ratio:4/5; }
+.bomal-lp .hero-card .portrait-cap h3 { color:#fff; font-size:1.35rem; }
+.bomal-lp .hero-card .portrait-cap p { font-size:.9375rem; color:rgba(255,255,255,.85); margin-top:.15rem; line-height:1.45; }
+.bomal-lp .hero-card .speaking { padding:var(--s3) var(--s4); font-size:.875rem; font-weight:700; color:var(--green-deep); background:rgba(125,151,94,.14); border-top:1px solid var(--line); }
+.bomal-lp .facts { border-block:1px solid var(--line); }
+.bomal-lp .facts .wrap { display:grid; gap:var(--s4); padding-block:var(--s5); }
+@media (min-width:700px) {
+  .bomal-lp .facts .wrap { grid-template-columns:repeat(4,1fr); gap:var(--s3); }
+}
+.bomal-lp .fact dt { font-size:.875rem; color:var(--ink-soft); margin-bottom:.2rem; }
+.bomal-lp .fact dd { margin:0; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; font-size:1.1875rem; letter-spacing:-.02em; line-height:1.3; }
+.bomal-lp .lineup { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s4); }
+@media (min-width:620px) {
+  .bomal-lp .lineup { grid-template-columns:repeat(3,1fr); }
+}
+@media (min-width:960px) {
+  .bomal-lp .lineup { grid-template-columns:repeat(6,1fr); gap:var(--s3); }
+}
+.bomal-lp .lineup figure { margin:0; }
+.bomal-lp .lineup .portrait { aspect-ratio:1/1; border-radius:var(--rad-lg); box-shadow:var(--sh-1); }
+.bomal-lp .lineup .portrait::after { background:linear-gradient(to top, rgba(29,23,16,.45), rgba(29,23,16,0) 50%); }
+.bomal-lp .lineup figcaption { margin-top:var(--s2); }
+.bomal-lp .lineup figcaption b { display:block; font-weight:900; font-size:.9375rem; line-height:1.35; }
+.bomal-lp .lineup figcaption span { display:block; font-size:.8125rem; color:var(--ink-soft); line-height:1.45; margin-top:.1rem; }
+.bomal-lp .proof { display:grid; gap:var(--s6); align-items:center; }
+@media (min-width:900px) {
+  .bomal-lp .proof { grid-template-columns:.8fr 1.2fr; gap:var(--s7); }
+}
+.bomal-lp .proof .photo { aspect-ratio:4/5; }
+.bomal-lp .objections { display:grid; gap:var(--s5); }
+.bomal-lp .objection h3 { margin-bottom:var(--s2); }
+.bomal-lp .objection p { color:var(--ink-soft); font-size:1rem; }
+.bomal-lp .closer { text-align:center; }
+.bomal-lp .closer h2 { margin-bottom:var(--s3); }
+.bomal-lp .closer .lede { margin-bottom:var(--s5); }
+----- END page-a.css -----
+
+Create src/styles/page-b.css:
+----- BEGIN page-b.css -----
+/* Page B only. Also scoped to .bomal-lp. */
+.bomal-lp .topbar { padding-block:var(--s4); }
+.bomal-lp .topbar .wrap { display:flex; align-items:center; justify-content:space-between; gap:var(--s3); }
+.bomal-lp .topbar img { height:68px; width:auto; display:block; }
+.bomal-lp .topbar .when { font-size:.9375rem; font-weight:700; color:var(--ink-soft); text-align:right; line-height:1.4; }
+.bomal-lp .hero { padding-block:var(--s5) var(--s6); }
+.bomal-lp .hero-grid { display:grid; gap:var(--s6); align-items:center; }
+@media (min-width:900px) {
+  .bomal-lp .hero-grid { grid-template-columns:1.05fr .95fr; gap:var(--s7); }
+}
+.bomal-lp .hero h1 { max-width:21ch; font-size:clamp(1.45rem,2.9vw,2.2rem); line-height:1.32; }
+@media (min-width:700px) {
+  .bomal-lp .hero h1 { text-indent:-.44em; }
+}
+.bomal-lp .hero .lede { margin-top:var(--s4); max-width:52ch; }
+.bomal-lp .hero-card { border-radius:var(--rad-xl); overflow:hidden; box-shadow:var(--sh-3); background:var(--card); }
+.bomal-lp .hero-card .portrait { aspect-ratio:4/5; }
+.bomal-lp .hero-card .portrait-cap h3 { color:#fff; font-size:1.45rem; }
+.bomal-lp .hero-card .portrait-cap p { font-size:.9375rem; color:rgba(255,255,255,.85); margin-top:.15rem; line-height:1.45; }
+.bomal-lp .hero-card .speaking { padding:var(--s3) var(--s4); font-size:.875rem; font-weight:700; color:var(--green-deep); background:rgba(125,151,94,.14); border-top:1px solid var(--line); }
+.bomal-lp .wall-intro { margin-bottom:var(--s5); }
+.bomal-lp .wall { display:flex; flex-wrap:wrap; justify-content:center; gap:var(--s4); }
+.bomal-lp .wall figure { flex:0 0 calc((100% - var(--s4)) / 2); }
+@media (min-width:680px) {
+  .bomal-lp .wall figure { flex:0 0 calc((100% - 2 * var(--s4)) / 3); }
+}
+.bomal-lp .wall figure { margin:0; }
+.bomal-lp .wall .portrait { aspect-ratio:4/5; border-radius:var(--rad-lg); box-shadow:var(--sh-2); }
+.bomal-lp .wall .portrait img { object-position:center 18%; }
+.bomal-lp .wall .portrait-cap h3 { color:#fff; font-size:1.15rem; }
+.bomal-lp .wall .portrait-cap p { font-size:.875rem; color:rgba(255,255,255,.85); margin-top:.2rem; line-height:1.45; }
+.bomal-lp .wall .tagline { margin-top:var(--s2); font-size:.9375rem; color:var(--ink-soft); line-height:1.6; }
+.bomal-lp .insts { display:grid; gap:var(--s4); }
+@media (min-width:760px) {
+  .bomal-lp .insts { grid-template-columns:repeat(4,1fr); }
+}
+.bomal-lp .inst { padding:var(--s4); border-left:3px solid var(--olive); }
+.bomal-lp .inst b { display:block; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; font-size:1.05rem; letter-spacing:-.015em; line-height:1.3; }
+.bomal-lp .inst span { display:block; margin-top:.35rem; font-size:.9375rem; color:var(--ink-soft); line-height:1.55; }
+.bomal-lp .spot { display:grid; gap:var(--s6); align-items:center; }
+@media (min-width:900px) {
+  .bomal-lp .spot { grid-template-columns:.85fr 1.15fr; gap:var(--s7); }
+}
+.bomal-lp .spot .portrait { aspect-ratio:1/1; border-radius:var(--rad-xl); box-shadow:var(--sh-3); }
+.bomal-lp .spot .portrait::after { background:linear-gradient(to top, rgba(29,23,16,.35), rgba(29,23,16,0) 55%); }
+.bomal-lp .spot h2 { margin-bottom:var(--s3); }
+.bomal-lp .spot p+p { margin-top:var(--s3); }
+.bomal-lp .pod { display:grid; gap:var(--s5); align-items:center; }
+@media (min-width:860px) {
+  .bomal-lp .pod { grid-template-columns:1fr 1.15fr; gap:var(--s6); }
+}
+.bomal-lp .pod-img { border-radius:var(--rad-lg); overflow:hidden; box-shadow:var(--sh-2); background:var(--tan-light); }
+.bomal-lp .pod-img img { display:block; width:100%; height:auto; }
+.bomal-lp .closer { text-align:center; }
+.bomal-lp .closer h2 { margin-bottom:var(--s3); }
+.bomal-lp .closer .lede { margin:0 auto var(--s5); max-width:50ch; }
+.bomal-lp .closer .cta-sub { margin-top:var(--s4); font-size:.9375rem; color:rgba(250,248,243,.7); }
+----- END page-b.css -----
+
+STEP 3 - Add the behaviour module.
+This runs the early-bird countdown, swaps the price between $25 and $30 on its own when the deadline passes, and forwards ad tracking parameters to register.bomal.org. Create src/lib/bomal-lp.js:
+----- BEGIN bomal-lp.js -----
+/* ============================================================
+   BOMAL landing pages: shared behaviour.
+
+   1. Speaker message-match.  ?s=givens swaps the hero portrait,
+      name and role to the speaker whose ad was clicked.
+   2. Urgency.  One date constant drives the strip; it flips
+      itself over once early-bird closes. No edit needed.
+   3. UTM passthrough.  Ad tracking survives the handoff to
+      register.bomal.org.
+   ============================================================ */
+
+/* ---- 1. CONFIGURE THE DEADLINE HERE AND NOWHERE ELSE ---- */
+var EARLY_BIRD_END = '2026-10-10T23:59:59-06:00';
+
+var REGISTER_URL = 'https://register.bomal.org/';
+
+/* Portraits supplied by bomal.org. Add a speaker here and the swap
+   picks them up on every page at once. `quote` is intentionally
+   empty: no words are put in a speaker's mouth until BOMAL supplies
+   them. See content-gaps.md. */
+var SPEAKERS = {
+  givens:  { name: 'Terryl Givens',       role: 'Senior Research Fellow, Neal A. Maxwell Institute', img: 'givens.webp',  quote: '' },
+  welch:   { name: 'Rosalynde F. Welch',  role: 'Associate Director, Neal A. Maxwell Institute',     img: 'welch-portrait.webp', quote: '' },
+  wilcox:  { name: 'Bradley R. Wilcox',   role: 'Professor of Ancient Scripture, BYU',               img: 'wilcox-portrait.webp', quote: '' },
+  rane:    { name: 'Walter Rane',         role: 'Painter, honored Saturday afternoon',               img: 'rane.webp',    quote: '' },
+  pelo:    { name: 'Brad Pelo',           role: 'President, The Chosen',                             img: 'pelo.webp',    quote: '' },
+  johnson: { name: 'Jane Clayson Johnson',role: 'Journalist and author',                             img: 'johnson.webp', quote: '' }
+};
+
+/**
+ * Wire up one landing page. Call it from useEffect with the wrapper element.
+ * Returns a cleanup function that clears the countdown interval.
+ */
+export function initLandingPage(root) {
+  if (!root) return function () {};
+  var timer = null;
+
+    var params = new URLSearchParams(window.location.search);
+    var assetBase = root.getAttribute('data-asset-base') || 'brand_assets/';
+
+    /* ---------- 1. Speaker message-match ----------
+       Two separate questions. Which speaker does the page show, and did the
+       visitor actually arrive from that speaker's ad? A page can carry a default
+       speaker (data-default-speaker) so it is never generic, but the
+       "you followed X here" copy must only appear for a real ad click. */
+    var has = function (k) { return !!k &amp;&amp; Object.prototype.hasOwnProperty.call(SPEAKERS, k); };
+
+    var urlKey = (params.get('s') || params.get('speaker') || '').toLowerCase().trim();
+    var defKey = (root.getAttribute('data-default-speaker') || '').toLowerCase().trim();
+
+    /* A dedicated page is the destination of one speaker's ad, so every visitor
+       did arrive from that ad whether or not the URL still carries ?s=. On a
+       shared page, only an explicit ?s= counts. */
+    var dedicated = root.hasAttribute('data-speaker-dedicated');
+
+    var key = has(urlKey) ? urlKey : (has(defKey) ? defKey : '');
+    var fromAd = has(urlKey) || (dedicated &amp;&amp; has(defKey));
+    var speaker = key ? SPEAKERS[key] : null;
+
+    if (speaker) {
+      root.querySelectorAll('[data-sp="name"]').forEach(function (el) { el.textContent = speaker.name; });
+      root.querySelectorAll('[data-sp="role"]').forEach(function (el) { el.textContent = speaker.role; });
+      root.querySelectorAll('[data-sp="img"]').forEach(function (el) {
+        el.src = assetBase + 'speakers/' + speaker.img;
+        el.alt = speaker.name;
+      });
+      /* Whoever is in the hero must not also appear in the lineup grid below,
+         default speaker included. */
+      root.querySelectorAll('[data-lineup="' + key + '"]').forEach(function (el) { el.hidden = true; });
+    }
+
+    /* Only a real ad click earns the "you followed X here" copy. */
+    if (fromAd) {
+      root.querySelectorAll('[data-sp-only]').forEach(function (el) { el.hidden = false; });
+      root.querySelectorAll('[data-sp-none]').forEach(function (el) { el.hidden = true; });
+    }
+
+    /* ---------- 2. Urgency ---------- */
+    var deadline = new Date(EARLY_BIRD_END);
+    var live = !isNaN(deadline) &amp;&amp; deadline.getTime() &gt; Date.now();
+
+    function remaining() {
+      var ms = deadline.getTime() - Date.now();
+      if (ms &lt;= 0) return null;
+      var d = Math.floor(ms / 864e5);
+      var h = Math.floor((ms % 864e5) / 36e5);
+      if (d &gt;= 1) return d + (d === 1 ? ' day ' : ' days ') + h + (h === 1 ? ' hour' : ' hours');
+      var m = Math.floor((ms % 36e5) / 6e4);
+      return h + (h === 1 ? ' hour ' : ' hours ') + m + (m === 1 ? ' minute' : ' minutes');
+    }
+
+    function paintUrgency() {
+      var left = live ? remaining() : null;
+      if (left) {
+        root.querySelectorAll('[data-urgency]').forEach(function (el) {
+          el.innerHTML = 'Early-bird pricing ends in &lt;b&gt;' + left + '&lt;/b&gt;. Register now for &lt;b&gt;$25&lt;/b&gt; instead of $30.';
+        });
+        root.querySelectorAll('[data-price-now]').forEach(function (el) { el.textContent = '$25'; });
+        root.querySelectorAll('[data-price-was]').forEach(function (el) { el.hidden = false; });
+        root.querySelectorAll('[data-price-note]').forEach(function (el) {
+          el.textContent = 'Early-bird price, through October 10.';
+        });
+      } else {
+        live = false;
+        root.querySelectorAll('[data-urgency]').forEach(function (el) {
+          el.innerHTML = '&lt;b&gt;November 6 and 7&lt;/b&gt; at the Provo Marriott. Banquet and box lunch tickets are available while they last.';
+        });
+        root.querySelectorAll('[data-price-now]').forEach(function (el) { el.textContent = '$30'; });
+        root.querySelectorAll('[data-price-was]').forEach(function (el) { el.hidden = true; });
+        root.querySelectorAll('[data-price-note]').forEach(function (el) {
+          el.textContent = 'Full registration, both days.';
+        });
+      }
+    }
+    paintUrgency();
+    if (live) timer = setInterval(paintUrgency, 60000);
+
+    /* ---------- 3. UTM passthrough ---------- */
+    var carry = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid','ttclid'];
+    var pass = new URLSearchParams();
+    carry.forEach(function (k) { if (params.get(k)) pass.set(k, params.get(k)); });
+    if (fromAd &amp;&amp; key) pass.set('utm_content', pass.get('utm_content') || key);
+
+    var qs = pass.toString();
+    root.querySelectorAll('[data-register]').forEach(function (el) {
+      el.setAttribute('href', REGISTER_URL + (qs ? '?' + qs : ''));
+    });
+
+    /* ---------- FAQ disclosure, where a page has one ---------- */
+    root.querySelectorAll('[data-faq] button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        var panel = document.getElementById(btn.getAttribute('aria-controls'));
+        if (panel) panel.hidden = open;
+      });
+    });
+  return function () { if (timer) clearInterval(timer); };
+}
+----- END bomal-lp.js -----
+
+STEP 4 - Add two routes.
+  /wilcox         -&gt;  src/pages/WilcoxDirect.tsx
+  /wilcox-lineup  -&gt;  src/pages/WilcoxLineup.tsx
+
+Create both page files as empty stubs for now. I will paste the contents of each in my next two messages. Do not add either route to the site navigation, and do not wrap them in the site layout.
+
+Confirm when the assets, the three stylesheets, the module and the two empty routes exist.</code></pre>
+  </section>
+  <section class="prompt" id="p2">
+    <div class="prompt-head">
+      <div>
+        <h3><span class="num">2</span>Page A, the direct response page</h3>
+        <p>Fills in the /wilcox route. Run after prompt 1 finishes.</p>
+      </div>
+      <button class="copy" data-target="code2">Copy prompt</button>
+    </div>
+    <pre><code id="code2">Fill in src/pages/WilcoxDirect.tsx, the component for the /wilcox route.
+
+Convert the HTML below into JSX. Change ONLY what JSX requires:
+  - class       -&gt; className
+  - self-close void tags (img, br, meta)
+  - inline style="..." -&gt; style={{ ... }} objects
+  - for         -&gt; htmlFor
+Change nothing else. Do not reword the copy, rename a class, reorder the markup, or drop any data-* attribute. The stylesheet and the behaviour module both key off those class names and data attributes, so edits will break them.
+
+Wrap the whole thing in this element, and put the ref on it:
+
+  &lt;div
+    className="bomal-lp"
+    data-asset-base="/lp-assets/"
+    data-default-speaker="wilcox"
+    data-speaker-dedicated
+    ref={ref}
+  &gt;
+    ... the converted HTML ...
+  &lt;/div&gt;
+
+At the top of the component:
+
+  import { useEffect, useRef } from 'react';
+  import { initLandingPage } from '../lib/bomal-lp';
+  import '../styles/bomal-lp.css';
+  import '../styles/page-a.css';
+
+  const ref = useRef&lt;HTMLDivElement&gt;(null);
+  useEffect(() =&gt; initLandingPage(ref.current), []);
+
+Set the document title to:
+  Bradley R. Wilcox at the Book of Mormon Culture Conference | November 6 and 7
+and the meta description to:
+  Two days with Terryl Givens, Rosalynde Welch, Bradley Wilcox and dozens of scholars and artists. November 6 and 7 at the Provo Marriott. Registration is $30.
+
+This page keeps its sticky mobile bar at the bottom. That is intentional, leave it in.
+
+HTML to convert:
+----- BEGIN HTML -----
+&lt;div class="urgency" data-urgency&gt;November 6 and 7 at the Provo Marriott.&lt;/div&gt;
+
+&lt;header class="topbar"&gt;
+  &lt;div class="wrap"&gt;
+    &lt;img src="/lp-assets/logo-full.webp" alt="Book of Mormon Arts &amp;amp; Letters Foundation"&gt;
+    &lt;p class="when"&gt;November 6 and 7, 2026&lt;br&gt;Provo Marriott on Center&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;!-- HERO --&gt;
+  &lt;section class="hero grain"&gt;
+    &lt;div class="wrap hero-grid"&gt;
+      &lt;div&gt;
+        &lt;p class="from-speaker" data-sp-only hidden&gt;
+          &lt;svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"&gt;&lt;path d="M10 1.5 12.6 7l6 .8-4.4 4.2 1.1 6-5.3-2.9L4.7 18l1.1-6L1.4 7.8l6-.8L10 1.5Z"/&gt;&lt;/svg&gt;
+          &lt;span&gt;&lt;span data-sp="name"&gt;Your speaker&lt;/span&gt; is speaking at this conference.&lt;/span&gt;
+        &lt;/p&gt;
+
+        &lt;h1&gt;Two days inside the Book of Mormon, with scholars and artists who live in it.&lt;/h1&gt;
+
+        &lt;p class="lede measure"&gt;
+          The Book of Mormon Culture Conference brings scholars, painters, filmmakers and writers
+          to Provo for a two-day conference focused purely on celebrating the Book of Mormon.
+          Come and listen to keynotes from Brad Wilcox, Rosalynde F. Welch, and Terryl Givens,
+          plus dozens of other speakers across both days.
+        &lt;/p&gt;
+
+        &lt;div class="cta-row"&gt;
+          &lt;a class="btn btn-primary btn-lg" href="https://register.bomal.org/" data-register&gt;Register for the conference&lt;/a&gt;
+          &lt;p class="cta-sub"&gt;
+            &lt;strong data-price-now&gt;$30&lt;/strong&gt;
+            &lt;span class="was" data-price-was hidden&gt;$30&lt;/span&gt;
+            per person.&lt;br&gt;
+            &lt;span data-price-note&gt;Full registration, both days.&lt;/span&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="hero-card"&gt;
+        &lt;div class="portrait"&gt;
+          &lt;img data-sp="img" src="/lp-assets/speakers/wilcox-portrait.webp" alt="Bradley R. Wilcox" width="1000" height="1250"&gt;
+          &lt;div class="portrait-cap"&gt;
+            &lt;h3 data-sp="name"&gt;Bradley R. Wilcox&lt;/h3&gt;
+            &lt;p data-sp="role"&gt;Professor of Ancient Scripture, BYU&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class="speaking"&gt;Keynote speaker at the Book of Mormon Culture Conference&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- FACTS --&gt;
+  &lt;section class="facts band-card"&gt;
+    &lt;dl class="wrap"&gt;
+      &lt;div class="fact"&gt;&lt;dt&gt;When&lt;/dt&gt;&lt;dd&gt;November 6 and 7, 2026&lt;/dd&gt;&lt;/div&gt;
+      &lt;div class="fact"&gt;&lt;dt&gt;Where&lt;/dt&gt;&lt;dd&gt;Provo Marriott on Center&lt;/dd&gt;&lt;/div&gt;
+      &lt;div class="fact"&gt;&lt;dt&gt;Registration&lt;/dt&gt;&lt;dd&gt;&lt;span data-price-now&gt;$30&lt;/span&gt; per person&lt;/dd&gt;&lt;/div&gt;
+      &lt;div class="fact"&gt;&lt;dt&gt;Format&lt;/dt&gt;&lt;dd&gt;Two full days, in person&lt;/dd&gt;&lt;/div&gt;
+    &lt;/dl&gt;
+  &lt;/section&gt;
+
+  &lt;!-- LINEUP --&gt;
+  &lt;section class="section"&gt;
+    &lt;div class="wrap stack-5"&gt;
+      &lt;div class="measure"&gt;
+        &lt;h2&gt;Who you will hear from&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div class="lineup"&gt;
+        &lt;figure data-lineup="givens"&gt;
+          &lt;div class="portrait"&gt;&lt;img src="/lp-assets/speakers/givens.webp" alt="Terryl Givens" width="400" height="400" loading="lazy"&gt;&lt;/div&gt;
+          &lt;figcaption&gt;&lt;b&gt;Terryl Givens&lt;/b&gt;&lt;span&gt;Neal A. Maxwell Institute&lt;/span&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;figure data-lineup="welch"&gt;
+          &lt;div class="portrait"&gt;&lt;img src="/lp-assets/speakers/welch-portrait.webp" alt="Rosalynde F. Welch" width="1000" height="1000" loading="lazy"&gt;&lt;/div&gt;
+          &lt;figcaption&gt;&lt;b&gt;Rosalynde F. Welch&lt;/b&gt;&lt;span&gt;Neal A. Maxwell Institute&lt;/span&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;figure data-lineup="wilcox"&gt;
+          &lt;div class="portrait"&gt;&lt;img src="/lp-assets/speakers/wilcox-portrait.webp" alt="Bradley R. Wilcox" width="1000" height="1250" loading="lazy"&gt;&lt;/div&gt;
+          &lt;figcaption&gt;&lt;b&gt;Bradley R. Wilcox&lt;/b&gt;&lt;span&gt;Ancient Scripture, BYU&lt;/span&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;figure data-lineup="rane"&gt;
+          &lt;div class="portrait"&gt;&lt;img src="/lp-assets/speakers/rane.webp" alt="Walter Rane" width="400" height="400" loading="lazy"&gt;&lt;/div&gt;
+          &lt;figcaption&gt;&lt;b&gt;Walter Rane&lt;/b&gt;&lt;span&gt;Painter&lt;/span&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;figure data-lineup="pelo"&gt;
+          &lt;div class="portrait"&gt;&lt;img src="/lp-assets/speakers/pelo.webp" alt="Brad Pelo" width="400" height="400" loading="lazy"&gt;&lt;/div&gt;
+          &lt;figcaption&gt;&lt;b&gt;Brad Pelo&lt;/b&gt;&lt;span&gt;President, The Chosen&lt;/span&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;figure data-lineup="johnson"&gt;
+          &lt;div class="portrait"&gt;&lt;img src="/lp-assets/speakers/johnson.webp" alt="Jane Clayson Johnson" width="400" height="400" loading="lazy"&gt;&lt;/div&gt;
+          &lt;figcaption&gt;&lt;b&gt;Jane Clayson Johnson&lt;/b&gt;&lt;span&gt;Journalist and author&lt;/span&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+      &lt;/div&gt;
+      &lt;p class="lede measure"&gt;And dozens more scholars, artists and creators across both days.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- OBJECTIONS --&gt;
+  &lt;section class="section band-paper grain"&gt;
+    &lt;div class="wrap proof"&gt;
+      &lt;div class="photo"&gt;
+        &lt;img src="/lp-assets/event/audience-smiling.webp" alt="Attendees laughing during a session at the conference" width="1200" height="1500" loading="lazy"&gt;
+      &lt;/div&gt;
+      &lt;div class="objections"&gt;
+      &lt;div class="objection"&gt;
+        &lt;h3&gt;PhD not required&lt;/h3&gt;
+        &lt;p&gt;This conference is meant for people who love the Book of Mormon, not people who know every single thing about it. Come with the Book of Mormon you already know and love.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="objection"&gt;
+        &lt;h3&gt;Two whole days. Just thirty dollars.&lt;/h3&gt;
+        &lt;p&gt;A spiritual feast from some of the most unique testimonies.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="objection"&gt;
+        &lt;h3&gt;Bring your friends and family!&lt;/h3&gt;
+        &lt;p&gt;Register as a group and get an automatic ten percent off.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- CLOSER --&gt;
+  &lt;section class="section-lg band-bark grain"&gt;
+    &lt;div class="wrap-narrow closer"&gt;
+      &lt;h2&gt;November 6 and 7. Provo.&lt;/h2&gt;
+      &lt;p class="lede"&gt;Registration takes about two minutes and holds your seat immediately.&lt;/p&gt;
+      &lt;a class="btn btn-onbark btn-lg" href="https://register.bomal.org/" data-register&gt;Register for the conference&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer class="sitefoot"&gt;
+  &lt;div class="wrap center stack-2"&gt;
+    &lt;p&gt;Book of Mormon Arts &amp;amp; Letters Foundation, Inc. A 501(c)(3) nonprofit.&lt;/p&gt;
+    &lt;p&gt;Ancient culture, modern impact.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;div class="stickybar"&gt;
+  &lt;p class="sb-price"&gt;&lt;strong&gt;&lt;span data-price-now&gt;$30&lt;/span&gt; per person&lt;/strong&gt;November 6 and 7, Provo&lt;/p&gt;
+  &lt;a class="btn btn-primary" href="https://register.bomal.org/" data-register&gt;Register&lt;/a&gt;
+&lt;/div&gt;
+----- END HTML -----</code></pre>
+  </section>
+  <section class="prompt" id="p3">
+    <div class="prompt-head">
+      <div>
+        <h3><span class="num">3</span>Page B, the lineup page</h3>
+        <p>Fills in the /wilcox-lineup route. Run last.</p>
+      </div>
+      <button class="copy" data-target="code3">Copy prompt</button>
+    </div>
+    <pre><code id="code3">Fill in src/pages/WilcoxLineup.tsx, the component for the /wilcox-lineup route.
+
+Convert the HTML below into JSX. Change ONLY what JSX requires:
+  - class       -&gt; className
+  - self-close void tags (img, br, meta)
+  - inline style="..." -&gt; style={{ ... }} objects
+  - for         -&gt; htmlFor
+Change nothing else. Do not reword the copy, rename a class, reorder the markup, or drop any data-* attribute. The stylesheet and the behaviour module both key off those class names and data attributes, so edits will break them.
+
+Wrap the whole thing in this element, and put the ref on it:
+
+  &lt;div
+    className="bomal-lp"
+    data-asset-base="/lp-assets/"
+    data-default-speaker="wilcox"
+    data-speaker-dedicated
+    ref={ref}
+  &gt;
+    ... the converted HTML ...
+  &lt;/div&gt;
+
+At the top of the component:
+
+  import { useEffect, useRef } from 'react';
+  import { initLandingPage } from '../lib/bomal-lp';
+  import '../styles/bomal-lp.css';
+  import '../styles/page-b.css';
+
+  const ref = useRef&lt;HTMLDivElement&gt;(null);
+  useEffect(() =&gt; initLandingPage(ref.current), []);
+
+Set the document title to:
+  Bradley R. Wilcox and the room he is speaking in | November 6 and 7
+and the meta description to:
+  Bradley R. Wilcox is one of six names on the program, alongside Terryl Givens, Rosalynde F. Welch, Walter Rane, Brad Pelo and Jane Clayson Johnson. Provo, November 6 and 7.
+
+Note the portrait grid holds five people, not six. Bradley R. Wilcox is deliberately not in it, because he is already the hero above and the heading reads "Other names on the program".
+
+HTML to convert:
+----- BEGIN HTML -----
+&lt;div class="urgency" data-urgency&gt;November 6 and 7 at the Provo Marriott.&lt;/div&gt;
+
+&lt;header class="topbar"&gt;
+  &lt;div class="wrap"&gt;
+    &lt;img src="/lp-assets/logo-full.webp" alt="Book of Mormon Arts &amp;amp; Letters Foundation"&gt;
+    &lt;p class="when"&gt;November 6 and 7, 2026&lt;br&gt;Provo Marriott on Center&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;!-- HERO: deliberately short. The proof is the grid below it. --&gt;
+  &lt;section class="hero grain"&gt;
+    &lt;div class="wrap hero-grid"&gt;
+      &lt;div&gt;
+        &lt;h1&gt;“I have written books that I hope have been a product of inspiration, and yet nothing touches the Book of Mormon.”&lt;/h1&gt;
+        &lt;p class="lede"&gt;
+          &lt;span data-sp="name"&gt;Bradley R. Wilcox&lt;/span&gt; speaks at the Book of Mormon Culture
+          Conference, alongside the scholars, painters and storytellers who have given their
+          careers to this book. The conference is November 6th and 7th at the Provo Marriott.
+        &lt;/p&gt;
+        &lt;p style="margin-top:var(--s5)"&gt;
+          &lt;a class="btn btn-primary btn-lg" href="https://register.bomal.org/" data-register&gt;Register, &lt;span data-price-now&gt;$30&lt;/span&gt; per person&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="hero-card"&gt;
+        &lt;div class="portrait"&gt;
+          &lt;img data-sp="img" src="/lp-assets/speakers/wilcox-portrait.webp" alt="Bradley R. Wilcox" width="1000" height="1250"&gt;
+          &lt;div class="portrait-cap"&gt;
+            &lt;h3 data-sp="name"&gt;Bradley R. Wilcox&lt;/h3&gt;
+            &lt;p data-sp="role"&gt;Professor of Ancient Scripture, BYU&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class="speaking"&gt;Keynote speaker at the Book of Mormon Culture Conference&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- THE WALL --&gt;
+  &lt;section class="section"&gt;
+    &lt;div class="wrap"&gt;
+      &lt;div class="wall-intro measure"&gt;
+        &lt;h2&gt;Other names on the program&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div class="wall"&gt;
+        &lt;figure&gt;
+          &lt;div class="portrait"&gt;
+            &lt;img src="/lp-assets/speakers/givens.webp" alt="Terryl Givens" width="400" height="400"&gt;
+            &lt;div class="portrait-cap"&gt;&lt;h3&gt;Terryl Givens&lt;/h3&gt;&lt;p&gt;Senior Research Fellow, Neal A. Maxwell Institute&lt;/p&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class="tagline"&gt;Honored Friday evening for achievement in Book of Mormon letters.&lt;/p&gt;
+        &lt;/figure&gt;
+        &lt;figure&gt;
+          &lt;div class="portrait"&gt;
+            &lt;img src="/lp-assets/speakers/welch-portrait.webp" alt="Rosalynde F. Welch" width="1000" height="1000"&gt;
+            &lt;div class="portrait-cap"&gt;&lt;h3&gt;Rosalynde F. Welch&lt;/h3&gt;&lt;p&gt;Associate Director, Neal A. Maxwell Institute&lt;/p&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class="tagline"&gt;Scholar of scripture and theology, and a conference keynote.&lt;/p&gt;
+        &lt;/figure&gt;
+        &lt;figure&gt;
+          &lt;div class="portrait"&gt;
+            &lt;img src="/lp-assets/speakers/rane.webp" alt="Walter Rane" width="400" height="400"&gt;
+            &lt;div class="portrait-cap"&gt;&lt;h3&gt;Walter Rane&lt;/h3&gt;&lt;p&gt;Painter&lt;/p&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class="tagline"&gt;Recognized Saturday afternoon for his body of work.&lt;/p&gt;
+        &lt;/figure&gt;
+        &lt;figure&gt;
+          &lt;div class="portrait"&gt;
+            &lt;img src="/lp-assets/speakers/pelo.webp" alt="Brad Pelo" width="400" height="400"&gt;
+            &lt;div class="portrait-cap"&gt;&lt;h3&gt;Brad Pelo&lt;/h3&gt;&lt;p&gt;President, The Chosen&lt;/p&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class="tagline"&gt;Joins the Saturday session recognizing Walter Rane.&lt;/p&gt;
+        &lt;/figure&gt;
+        &lt;figure&gt;
+          &lt;div class="portrait"&gt;
+            &lt;img src="/lp-assets/speakers/johnson.webp" alt="Jane Clayson Johnson" width="400" height="400"&gt;
+            &lt;div class="portrait-cap"&gt;&lt;h3&gt;Jane Clayson Johnson&lt;/h3&gt;&lt;p&gt;Journalist and author&lt;/p&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class="tagline"&gt;Joins the Saturday session recognizing Walter Rane.&lt;/p&gt;
+        &lt;/figure&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- INSTITUTIONS --&gt;
+  &lt;section class="section band-card"&gt;
+    &lt;div class="wrap stack-5"&gt;
+      &lt;h2 class="measure-tight"&gt;The rooms these people come from&lt;/h2&gt;
+      &lt;div class="insts"&gt;
+        &lt;div class="inst"&gt;&lt;b&gt;Neal A. Maxwell Institute&lt;/b&gt;&lt;span&gt;Two of the three keynote speakers hold research appointments there.&lt;/span&gt;&lt;/div&gt;
+        &lt;div class="inst"&gt;&lt;b&gt;Brigham Young University&lt;/b&gt;&lt;span&gt;Faculty from Ancient Scripture are on the program across both days.&lt;/span&gt;&lt;/div&gt;
+        &lt;div class="inst"&gt;&lt;b&gt;The Chosen&lt;/b&gt;&lt;span&gt;Its president joins the Saturday afternoon recognition session.&lt;/span&gt;&lt;/div&gt;
+        &lt;div class="inst"&gt;&lt;b&gt;Informed Saints&lt;/b&gt;&lt;span&gt;The podcast records its closing episode live at the conference.&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- THE ROOM --&gt;
+  &lt;section class="section"&gt;
+    &lt;div class="photo-band"&gt;
+      &lt;div class="photo photo-caption"&gt;
+        &lt;img src="/lp-assets/event/panel.webp" alt="A panel session in front of a full auditorium at the conference" width="1800" height="1200" loading="lazy"&gt;
+        &lt;div class="cap"&gt;
+          &lt;b&gt;A room like this&lt;/b&gt;
+          &lt;p&gt;This is a live event meant for people coming together to celebrate the Book of
+             Mormon. This is not a debate of controversial topics. There are panels, questions
+             from the floor, and people who stay to strengthen testimonies and each other.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- HONOREE SPOTLIGHT --&gt;
+  &lt;section class="section-lg"&gt;
+    &lt;div class="wrap spot"&gt;
+      &lt;div class="portrait"&gt;
+        &lt;img src="/lp-assets/speakers/rane.webp" alt="Walter Rane" width="400" height="400" loading="lazy"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;h2&gt;Saturday afternoon belongs to Walter Rane&lt;/h2&gt;
+        &lt;p class="lede"&gt;
+          If you have seen a painting of the Book of Mormon in the last thirty years,
+          there is a good chance you have seen his work.
+        &lt;/p&gt;
+        &lt;p class="lede"&gt;
+          The Saturday afternoon session recognizes Rane's career, with Brad Pelo, president
+          of The Chosen, and the journalist Jane Clayson Johnson. The conference closes with a
+          live recording of the Informed Saints podcast.
+        &lt;/p&gt;
+        &lt;p style="margin-top:var(--s5)"&gt;
+          &lt;a class="btn btn-primary" href="https://register.bomal.org/" data-register&gt;Register for both days&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- PODCAST --&gt;
+  &lt;section class="section band-paper grain"&gt;
+    &lt;div class="wrap pod"&gt;
+      &lt;div class="pod-img"&gt;
+        &lt;img src="/lp-assets/informed-saints-hosts.webp" alt="The hosts of the Informed Saints podcast" width="1483" height="775" loading="lazy"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;h2&gt;The conference closes on the record&lt;/h2&gt;
+        &lt;p class="lede" style="margin-top:var(--s3)"&gt;
+          Informed Saints records its closing episode in the room, with the conference audience.
+          You are not watching a replay later. You are in it.
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- CLOSER --&gt;
+  &lt;section class="section-lg band-bark grain"&gt;
+    &lt;div class="wrap-narrow closer"&gt;
+      &lt;h2&gt;Two days. One room. Thirty dollars.&lt;/h2&gt;
+      &lt;p class="lede"&gt;
+        The Friday honoree banquet and the Saturday box lunch are separate tickets,
+        available while they last.
+      &lt;/p&gt;
+      &lt;a class="btn btn-onbark btn-lg" href="https://register.bomal.org/" data-register&gt;Register for the conference&lt;/a&gt;
+      &lt;p class="cta-sub"&gt;&lt;span data-price-note&gt;Full registration, both days.&lt;/span&gt; Groups receive an automatic ten percent discount.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer class="sitefoot"&gt;
+  &lt;div class="wrap center stack-2"&gt;
+    &lt;p&gt;Book of Mormon Arts &amp;amp; Letters Foundation, Inc. A 501(c)(3) nonprofit.&lt;/p&gt;
+    &lt;p&gt;Ancient culture, modern impact.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;div class="stickybar"&gt;
+  &lt;p class="sb-price"&gt;&lt;strong&gt;&lt;span data-price-now&gt;$30&lt;/span&gt; per person&lt;/strong&gt;November 6 and 7, Provo&lt;/p&gt;
+  &lt;a class="btn btn-primary" href="https://register.bomal.org/" data-register&gt;Register&lt;/a&gt;
+&lt;/div&gt;
+----- END HTML -----</code></pre>
+  </section>
+    </div>
+  </section>
+
+  <section class="section band-paper grain">
+    <div class="wrap-narrow">
+      <div class="note">
+        <h2>Worth knowing before you publish</h2>
+        <p><b>The price changes itself.</b> One date near the top of
+        <code>bomal-lp.js</code>, <code>EARLY_BIRD_END</code>, drives the countdown bar and every
+        price on both pages. Until it passes they read $25 with $30 struck through; after it they
+        flip to $30 and the event date on their own. Change that one line if the deadline moves.</p>
+        <p><b>Ad tracking is already wired.</b> Every button carries any
+        <code>utm_*</code>, <code>fbclid</code> or <code>gclid</code> through to
+        register.bomal.org, and falls back to <code>utm_content=wilcox</code> when the ad platform
+        sends nothing, so these registrations stay countable.</p>
+        <p><b>These pages should be indexable</b> once live. The preview they came from is blocked
+        by a robots.txt that is not part of the handoff, so there is nothing to undo.</p>
+        <p><b>A correction worth carrying across.</b> register.bomal.org currently shows the Friday
+        banquet and the Saturday box lunch as sold out. They are not. These pages say they are
+        available while tickets last, which means the two sites disagree until the registration
+        page is updated.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="sitefoot">
+  <div class="wrap center stack-2">
+    <p>Book of Mormon Arts &amp; Letters Foundation, Inc. A 501(c)(3) nonprofit.</p>
+    <p>Live preview of both pages: <a href="https://brianccm.github.io/bomal-wilcox-preview/">brianccm.github.io/bomal-wilcox-preview</a></p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.getAttribute('data-target'));
+    navigator.clipboard.writeText(el.textContent).then(function () {
+      var was = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('done');
+      setTimeout(function () { btn.textContent = was; btn.classList.remove('done'); }, 1800);
+    });
+  });
+});
+</script>
+</body>
+</html>
